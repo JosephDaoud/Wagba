@@ -127,7 +127,6 @@ public class MainPage extends AppCompatActivity {
         if (! tinyDB.preferences.contains("cartObjects")){
             ArrayList<Object> cartObjects = new ArrayList<Object>();
             tinyDB.putListObject("cartObjects",cartObjects);
-            Log.e("scratch","creating shared prefs for first time");
         }
        if (! tinyDB.preferences.contains("totalQuantity")){
            int totalQuantity = 0;
@@ -140,14 +139,7 @@ public class MainPage extends AppCompatActivity {
 
 
 
-//        meatLovers.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//                System.out.println("------------------------------------------------");
-//                System.out.println(uri.toString());
-//                System.out.println("------------------------------------------------");
-//            }
-//        });
+
         getRestaurants.addListenerForSingleValueEvent(
                 new ValueEventListener() {
 

@@ -47,7 +47,6 @@ public class CartPage extends AppCompatActivity {
 
             tinyDB.putListObject("cartObjects", cartobj);
             tinyDB.putInt("totalQuantity",quantity);
-            Log.e("scratch", (String.valueOf( cartobj.size())));
         }
 
     }
@@ -72,7 +71,6 @@ public class CartPage extends AppCompatActivity {
                 for (Object obj : cartObjects) {
                     cartItems.add((CartItem) obj);
                 }
-                Log.e("scratch", String.valueOf(cartItems.size()));
                 setCartItemsRecycler(cartItems);
                 calculateTotal(cartObjects);
             }

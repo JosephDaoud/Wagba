@@ -88,7 +88,6 @@ public class MealsPage extends AppCompatActivity  {
             }
             quantity = tinyDB.getInt("totalQuantity");
             noOfItemsText.setText(String.valueOf(quantity));
-            Log.e("scratch","on start -> mealspage " + "shared pref quantity"+ String.valueOf(quantity));
         }
 
     }
