@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import java.io.Serializable;
 
-public class CartItem implements Serializable {
+public class CartItem {
 
     String name;
     String content;

@@ -133,6 +133,10 @@ public class MainPage extends AppCompatActivity {
            tinyDB.putInt("totalQuantity",totalQuantity);
        }
 
+        if (! tinyDB.preferences.contains("currRestaurant")){
+           tinyDB.putString("currRestaurant","");
+        }
+
         setRestaurantRecycler(restaurants);
 
 

@@ -123,6 +123,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealHolder>{
                     }
                 }
                 tinyDB.putInt("totalQuantity",mealsPage.quantity);
+
+
                 mealsPage.noOfItemsText.setText(String.valueOf(mealsPage.quantity));
             }
         });

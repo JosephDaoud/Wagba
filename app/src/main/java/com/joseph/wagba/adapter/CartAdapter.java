@@ -75,6 +75,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
                            cartPage.quantity-=1;
                            cartPage.cartItems.remove(cartItem);
                            cartPage.setCartItemsRecycler(cartPage.cartItems);
+                           cartPage.scrollView.setVisibility(View.INVISIBLE);
+                           cartPage.bottomCard.setVisibility(View.INVISIBLE);
+                           cartPage.clearRestaurantName();
                        }
                        else
                        {

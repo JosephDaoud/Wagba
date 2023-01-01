@@ -115,7 +115,11 @@ public class MealsPage extends AppCompatActivity  {
                 pullRestaurantMeals(pizzaHutMainMeals,mainDishesList,R.id.recy_mainDishes,mainDishRecy,mealAdapter);
                 pullRestaurantMeals(pizzaHutBeverages,beveragesList,R.id.recy_bevarges,beveRecy,beveAdapter);
                 pullRestaurantMeals(pizzaHutDesserts,dessertList,R.id.recy_desserts,dessertsRecy,dessertsAdapter );
+                tinyDB.putString("currRestaurant",extras.getString("RestaurantName"));
                 break;
+
+            case "papa John's":
+
 
 
             default:

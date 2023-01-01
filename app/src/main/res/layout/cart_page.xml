@@ -21,11 +21,11 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
                 android:layout_marginTop="16dp"
                 android:text="Basket"
                 android:textSize="28sp"
                 android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +33,10 @@
                 android:id="@+id/card_rest_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
                 android:layout_marginTop="4dp"
-                android:text="Restaurant Name"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -44,6 +44,7 @@
 
 
     <ScrollView
+        android:id="@+id/scrollCart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
@@ -153,6 +154,7 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/bottomCardCart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -178,14 +180,14 @@
                 app:cornerRadius="20dp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/checkoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/purple"
                 android:padding="10dp"
-                android:text="Checkout"
+                android:text="Place Order"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
         </LinearLayout>
