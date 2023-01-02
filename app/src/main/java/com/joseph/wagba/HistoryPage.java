@@ -2,11 +2,19 @@ package com.joseph.wagba;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.joseph.wagba.adapter.PastOrderAdapter;
 import com.joseph.wagba.model.PastOrder;
 
@@ -20,19 +28,47 @@ public class HistoryPage extends AppCompatActivity {
 
     RecyclerView pastOrderRecycler;
     PastOrderAdapter pastOrderAdapter;
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://wagba-b752c-default-rtdb.firebaseio.com/");
+    DatabaseReference ordersRef = database.getReference("orders");
+    DatabaseReference ordersContent = database.getReference("orderContents");
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+
     List<PastOrder> pastOrders = new ArrayList<PastOrder>();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date date = new Date();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_page);
 
-        pastOrders.add(new PastOrder("Pizza Hut","Successful",R.drawable.pizza_hut_logo, formatter.format(date)));
-        pastOrders.add(new PastOrder("Pizza Hut","Successful",R.drawable.papa, formatter.format(date)));
+        ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    //System.out.println(dataSnapshot.getKey().toString().split("_")[0]);
+                    System.out.println(firebaseAuth.getCurrentUser().getUid());
+                    if (dataSnapshot.getKey().split("_")[0].equals(firebaseAuth.getCurrentUser().getUid())){
+                        pastOrders.add(new PastOrder(dataSnapshot.child("restaurant").getValue().toString(),
+                                dataSnapshot.child("status").getValue().toString(),"id: "+dataSnapshot.getKey().toString(),
+                                dataSnapshot.getKey().toString().split("_")[1]));
+                    }
+                }
+                setPastOrderRecycler(pastOrders);
+            }
 
-        setPastOrderRecycler(pastOrders);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//
+
+
     }
 
 

@@ -46,6 +46,7 @@ public class RestaurantsPage extends AppCompatActivity {
                             ,(Long) dataSnapshot.child("rating").getValue(),
                             dataSnapshot.child("image").getValue().toString(),"",""));
 
+
                 }
                 setMoreRestaurantRecycler(restaurantList);
 

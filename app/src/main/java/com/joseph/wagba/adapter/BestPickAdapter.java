@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.transition.Hold;
 import com.joseph.wagba.R;
 import com.joseph.wagba.model.BestPicks;
 
@@ -45,6 +46,7 @@ public class BestPickAdapter extends RecyclerView.Adapter<BestPickAdapter.BestPi
         Glide.with(context).load(bestPicksList.get(position).getImageUrl()).into(holder.itemImage);
         holder.itemName.setText(bestPicksList.get(position).getName());
         holder.itemTime.setText(bestPicksList.get(position).getTime());
+        holder.restaurantName.setText(bestPicksList.get(position).getRestaurant());
 
         holder.itemPrice.setText(bestPicksList.get(position).getPrice());
         holder.constraintLayout.setClickable(true);
@@ -79,8 +81,7 @@ public class BestPickAdapter extends RecyclerView.Adapter<BestPickAdapter.BestPi
             itemPrice = itemView.findViewById(R.id.itemprice);
             itemTime = itemView.findViewById(R.id.itemtime);
             itemName = itemView.findViewById(R.id.itemname);
-            restaurantName = itemName.findViewById(R.id.mealRestaurant);
-
+            restaurantName = itemView.findViewById(R.id.mealRestaurant);
             constraintLayout = itemView.findViewById(R.id.conlayout);
 
 

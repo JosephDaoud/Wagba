@@ -40,6 +40,10 @@ public class MealsPage extends AppCompatActivity  {
     DatabaseReference pizzaHutBeverages = database.getReference("restaurants/1/meals/beverages");
     DatabaseReference pizzaHutDesserts = database.getReference("restaurants/1/meals/desserts");
 
+    DatabaseReference KFCMainMeals = database.getReference("restaurants/2/meals/main");
+    DatabaseReference KFCBeverages = database.getReference("restaurants/2/meals/beverages");
+    DatabaseReference KFCDesserts = database.getReference("restaurants/2/meals/desserts");
+
     List<Meal> mainDishesList = new ArrayList<Meal>();
     List<Meal> beveragesList = new ArrayList<Meal>();
     List<Meal> dessertList = new ArrayList<Meal>();
@@ -118,7 +122,12 @@ public class MealsPage extends AppCompatActivity  {
                 tinyDB.putString("currRestaurant",extras.getString("RestaurantName"));
                 break;
 
-            case "papa John's":
+            case "KFC":
+                pullRestaurantMeals(KFCMainMeals,mainDishesList,R.id.recy_mainDishes,mainDishRecy,mealAdapter);
+                pullRestaurantMeals(KFCBeverages,beveragesList,R.id.recy_bevarges,beveRecy,beveAdapter);
+                pullRestaurantMeals(KFCDesserts,dessertList,R.id.recy_desserts,dessertsRecy,dessertsAdapter );
+                tinyDB.putString("currRestaurant",extras.getString("RestaurantName"));
+                break;
 
 
 

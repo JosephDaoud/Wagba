@@ -11,12 +11,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class LoginPage extends AppCompatActivity {
     EditText username;
@@ -27,6 +32,11 @@ public class LoginPage extends AppCompatActivity {
     Intent regIntent;
     String regStringHTML =  "<u>Not yet registered? SignUp Now</u>" ;
     FirebaseAuth firebaseAuth;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://wagba-b752c-default-rtdb.firebaseio.com/");
+    DatabaseReference usersReference = database.getReference("users");
+
+
 
 
     @Override
@@ -43,6 +53,9 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
+
+
+
         username = findViewById(R.id.userEmail);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
@@ -54,7 +67,10 @@ public class LoginPage extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://wagba-b752c-default-rtdb.firebaseio.com/");
+
+
+
+
 
 
 
@@ -100,8 +116,12 @@ public class LoginPage extends AppCompatActivity {
 
                 if (task.isSuccessful()){
                     Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                     startActivity(new Intent(LoginPage.this, SplashScreen.class));
-                    finish();
+
+
+                   String name= String.valueOf(usersReference.child(firebaseAuth.getCurrentUser().getUid()).child("firstName").get());
+
                 }
                 else {
                     Toast.makeText(LoginPage.this, "Error : "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();

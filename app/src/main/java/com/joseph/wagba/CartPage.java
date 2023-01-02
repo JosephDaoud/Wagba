@@ -42,8 +42,8 @@ public class CartPage extends AppCompatActivity {
     Button checkout;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://wagba-b752c-default-rtdb.firebaseio.com/");
     DatabaseReference ordersRef = database.getReference("orders");
+    DatabaseReference ordersContent = database.getReference("orderContents");
     FirebaseAuth firebaseAuth;
-    String restname;
 
 
     public ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
@@ -133,12 +133,11 @@ public class CartPage extends AppCompatActivity {
                     cartItemArrayList.add((CartItem) obj);
                 }
                 for (int i = 0; i < cartItemArrayList.size(); i++) {
-                    ordersRef.child(firebaseAuth.getCurrentUser().getUid()
-                            +"_"+strDate).child("orderContent").child(String.valueOf(i)).child("name").
+                    ordersContent.child(firebaseAuth.getCurrentUser().getUid()
+                            +"_"+strDate).child(String.valueOf(i)).child("name").
                             setValue(cartItemArrayList.get(i).getName());
-
-                    ordersRef.child(firebaseAuth.getCurrentUser().getUid()
-                                    +"_"+strDate).child("orderContent").child(String.valueOf(i)).child("quantity").
+                    ordersContent.child(firebaseAuth.getCurrentUser().getUid()
+                                    +"_"+strDate).child(String.valueOf(i)).child("quantity").
                             setValue(cartItemArrayList.get(i).getQuantity());
                 }
 
@@ -148,6 +147,9 @@ public class CartPage extends AppCompatActivity {
                 ordersRef.child(firebaseAuth.getCurrentUser().getUid()
                         + "_"+ strDate).child("restaurant").
                         setValue(tinyDB.getString("currRestaurant"));
+                ordersRef.child(firebaseAuth.getCurrentUser().getUid()
+                                + "_"+ strDate).child("status").
+                        setValue("pending");
 
                 Toast.makeText(CartPage.this, "Order Placed Successfully", Toast.LENGTH_SHORT).show();
 

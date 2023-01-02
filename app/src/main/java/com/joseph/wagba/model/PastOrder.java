@@ -4,13 +4,13 @@ public class PastOrder {
 
     String restaurantName;
     String status;
-    Integer imagePos;
+    String orderid;
     String date;
 
-    public PastOrder(String restaurantName, String status, Integer imagePos, String date) {
+    public PastOrder(String restaurantName, String status, String orderid, String date) {
         this.restaurantName = restaurantName;
         this.status = status;
-        this.imagePos = imagePos;
+        this.orderid = orderid;
         this.date = date;
     }
 
@@ -31,12 +31,12 @@ public class PastOrder {
         this.status = status;
     }
 
-    public Integer getImagePos() {
-        return imagePos;
+    public String getImagePos() {
+        return orderid;
     }
 
-    public void setImagePos(Integer imagePos) {
-        this.imagePos = imagePos;
+    public void setImagePos(String orderid) {
+        this.orderid = orderid;
     }
 
     public String getDate() {

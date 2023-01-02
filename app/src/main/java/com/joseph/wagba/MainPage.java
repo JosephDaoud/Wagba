@@ -41,7 +41,7 @@ public class MainPage extends AppCompatActivity {
 
 
     TextView rest_seemore, mainPageUsername;
-    ImageView cart, history, logout;
+    ImageView cart, history, logout, profile;
 
 
     Intent main2Res;
@@ -113,6 +113,7 @@ public class MainPage extends AppCompatActivity {
         history = findViewById(R.id.past_orders);
         mainPageUsername = findViewById(R.id.mainpageUsername);
         logout = findViewById(R.id.logout);
+        profile = findViewById(R.id.profile);
 
 
 
@@ -153,9 +154,11 @@ public class MainPage extends AppCompatActivity {
                     {
 
                         for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                            if (restaurants.size() <4){
                         restaurants.add(new Restaurant(dataSnapshot1.child("name").getValue().toString()
                                 ,(Long) dataSnapshot1.child("rating").getValue(),
                                 dataSnapshot1.child("image").getValue().toString(),"",""));
+                        }
                         }
                         setRestaurantRecycler(restaurants);
                     }
@@ -239,6 +242,12 @@ public class MainPage extends AppCompatActivity {
                 firebaseAuth.signOut();
                 startActivity(new Intent(MainPage.this, LoginPage.class));
                 finish();
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainPage.this,ProfilePage.class));
             }
         });
 

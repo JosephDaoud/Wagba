@@ -38,7 +38,7 @@ public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.Past
 
         holder.pastResName.setText(pastOrders.get(position).getRestaurantName());
         holder.status.setText(pastOrders.get(position).getStatus());
-        holder.pastImage.setImageResource(pastOrders.get(position).getImagePos());
+        holder.orderid.setText(pastOrders.get(position).getImagePos());
         holder.pastDate.setText(pastOrders.get(position).getDate());
 
     }
@@ -50,7 +50,7 @@ public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.Past
 
     public static final class PastOrderHolder extends RecyclerView.ViewHolder {
 
-        ImageView pastImage;
+        TextView orderid;
         TextView pastResName;
         TextView pastDate;
         TextView status;
@@ -61,7 +61,7 @@ public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.Past
         public PastOrderHolder(@NonNull View itemView) {
             super(itemView);
 
-            pastImage = itemView.findViewById(R.id.past_image);
+            orderid = itemView.findViewById(R.id.orderid);
             pastResName = itemView.findViewById(R.id.past_name);
             pastDate = itemView.findViewById(R.id.past_date);
             status = itemView.findViewById(R.id.past_status);

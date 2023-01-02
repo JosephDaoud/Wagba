@@ -44,7 +44,10 @@
         <activity android:name=".MealsPage"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name=".CartPage"/>
+        <activity android:name=".CartPage"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".ProfilePage"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
 
         <activity android:name=".HistoryPage"
             android:screenOrientation="portrait"
